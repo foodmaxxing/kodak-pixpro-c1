@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You Don't Need to Spend Hundreds to Get That Vintage Photo Look | The Hanis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #f5f0e8;
+      font-family: 'DM Sans', sans-serif;
+      color: #1a1a1a;
+      padding: 0 16px;
+    }
+
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px;
+    }
+
+    .article-wrap {
+      max-width: 720px !important;
+      margin: 0 auto !important;
+      padding: 60px 0 80px !important;
+    }
+
+    /* HEADER */
+    .site-label {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.2em !important;
+      text-transform: uppercase !important;
+      color: #b07d4a !important;
+      margin-bottom: 32px !important;
+      display: block !important;
+    }
+
+    .article-category {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.18em !important;
+      text-transform: uppercase !important;
+      color: #888 !important;
+      margin-bottom: 16px !important;
+      display: block !important;
+    }
+
+    h1.article-title {
+      font-family: 'Playfair Display', serif !important;
+      font-size: clamp(32px, 5vw, 52px) !important;
+      font-weight: 700 !important;
+      line-height: 1.15 !important;
+      color: #1a1a1a !important;
+      margin-bottom: 24px !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    .article-intro {
+      font-size: 18px !important;
+      font-weight: 300 !important;
+      line-height: 1.75 !important;
+      color: #444 !important;
+      border-left: 3px solid #b07d4a !important;
+      padding-left: 20px !important;
+      margin-bottom: 40px !important;
+    }
+
+    /* HERO IMAGE */
+    .hero-img-wrap {
+      width: 100% !important;
+      aspect-ratio: 16/9 !important;
+      background-color: #d9cfc0 !important;
+      border-radius: 4px !important;
+      overflow: hidden !important;
+      margin-bottom: 56px !important;
+      position: relative !important;
+    }
+
+    .hero-img-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      filter: sepia(15%) contrast(0.95) !important;
+    }
+
+    .img-placeholder {
+      width: 100% !important;
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+      color: #999 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+      background: linear-gradient(135deg, #e8e0d0 0%, #d9cfc0 100%) !important;
+    }
+
+    .img-placeholder span {
+      font-size: 28px !important;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 52px !important;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif !important;
+      font-size: clamp(22px, 3.5vw, 30px) !important;
+      font-weight: 700 !important;
+      color: #1a1a1a !important;
+      margin-bottom: 20px !important;
+      line-height: 1.2 !important;
+    }
+
+    .section p {
+      font-size: 16px !important;
+      line-height: 1.8 !important;
+      color: #333 !important;
+      margin-bottom: 16px !important;
+      font-weight: 300 !important;
+    }
+
+    .section p em {
+      font-style: italic !important;
+      color: #1a1a1a !important;
+      font-weight: 400 !important;
+    }
+
+    /* INLINE IMAGE */
+    .inline-img-wrap {
+      width: 100% !important;
+      aspect-ratio: 4/3 !important;
+      background-color: #d9cfc0 !important;
+      border-radius: 4px !important;
+      overflow: hidden !important;
+      margin: 28px 0 !important;
+    }
+
+    .inline-img-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      filter: sepia(15%) contrast(0.95) !important;
+    }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      background-color: #1a1a1a !important;
+      color: #f5f0e8 !important;
+      padding: 36px 40px !important;
+      margin: 40px 0 !important;
+      border-radius: 4px !important;
+      position: relative !important;
+    }
+
+    .pull-quote::before {
+      content: '"' !important;
+      font-family: 'Playfair Display', serif !important;
+      font-size: 80px !important;
+      color: #b07d4a !important;
+      position: absolute !important;
+      top: 8px !important;
+      left: 28px !important;
+      line-height: 1 !important;
+    }
+
+    .pull-quote p {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 20px !important;
+      font-style: italic !important;
+      line-height: 1.6 !important;
+      color: #f5f0e8 !important;
+      padding-top: 24px !important;
+    }
+
+    /* SPECS GRID */
+    .specs-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 2px !important;
+      margin: 24px 0 !important;
+      border-radius: 4px !important;
+      overflow: hidden !important;
+    }
+
+    .spec-item {
+      background-color: #ede6d8 !important;
+      padding: 18px 20px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+    }
+
+    .spec-item .spec-label {
+      font-size: 10px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.15em !important;
+      text-transform: uppercase !important;
+      color: #b07d4a !important;
+    }
+
+    .spec-item .spec-value {
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      color: #1a1a1a !important;
+      line-height: 1.4 !important;
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex !important;
+      align-items: center !important;
+      gap: 16px !important;
+      margin: 48px 0 !important;
+    }
+
+    .divider::before, .divider::after {
+      content: '' !important;
+      flex: 1 !important;
+      height: 1px !important;
+      background-color: #c8bfb0 !important;
+    }
+
+    .divider span {
+      font-size: 18px !important;
+      color: #b07d4a !important;
+    }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(135deg, #b07d4a 0%, #8a5e30 100%) !important;
+      padding: 44px 40px !important;
+      border-radius: 4px !important;
+      text-align: center !important;
+      margin-top: 52px !important;
+    }
+
+    .cta-block p {
+      font-size: 15px !important;
+      color: rgba(255,255,255,0.85) !important;
+      margin-bottom: 24px !important;
+      line-height: 1.7 !important;
+      font-weight: 300 !important;
+    }
+
+    .cta-btn {
+      display: inline-block !important;
+      background-color: #f5f0e8 !important;
+      color: #1a1a1a !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      text-decoration: none !important;
+      padding: 16px 40px !important;
+      border-radius: 2px !important;
+      transition: background-color 0.2s, transform 0.15s !important;
+    }
+
+    .cta-btn:hover {
+      background-color: #fff !important;
+      transform: translateY(-1px) !important;
+    }
+
+    .affiliate-note {
+      font-size: 11px !important;
+      color: rgba(255,255,255,0.55) !important;
+      margin-top: 20px !important;
+      letter-spacing: 0.05em !important;
+    }
+
+    /* FOOTER */
+    .article-footer {
+      margin-top: 60px !important;
+      padding-top: 24px !important;
+      border-top: 1px solid #c8bfb0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      flex-wrap: wrap !important;
+      gap: 12px !important;
+    }
+
+    .article-footer span {
+      font-size: 12px !important;
+      color: #999 !important;
+      letter-spacing: 0.05em !important;
+    }
+
+    @media (max-width: 600px) {
+      .specs-grid { grid-template-columns: 1fr !important; }
+      .pull-quote { padding: 32px 24px !important; }
+      .cta-block { padding: 36px 24px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+
+<div class="article-wrap">
+
+  <span class="site-label">The Hanis</span>
+  <span class="article-category">Gear &amp; Finds</span>
+
+  <h1 class="article-title">You Don't Need to Spend Hundreds to Get That Vintage Photo Look</h1>
+
+  <p class="article-intro">
+    There's something about those old photos — a little grainy, slightly washed out, colors that feel warm and imperfect — that just hits differently. If you've ever scrolled through your parents' photo albums and thought <em>"why do these look so much cooler than anything on my phone?"</em> — you're not alone.
+  </p>
+
+  <!-- HERO IMAGE -->
+  <div class="hero-img-wrap">
+    <img src="image1.jpg" alt="Kodak PIXPRO C1 Camera" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    <div class="img-placeholder" style="display:none !important;">
+      <span>📷</span>
+      image1.jpg
+    </div>
+  </div>
+
+  <div class="section">
+    <p>
+      That vintage, early-2000s digicam look is everywhere right now. And the good news? You don't have to be a professional photographer or drop hundreds of dollars to get it.
+    </p>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- MEET THE CAMERA -->
+  <div class="section">
+    <h2 class="section-title">Meet the Kodak PIXPRO C1</h2>
+    <p>
+      The <strong>Kodak PIXPRO C1</strong> is a brand new compact digital camera that does exactly what you want — captures moments with that nostalgic, film-like quality — without making your wallet cry. At just <strong>around $99</strong>, it's one of the most accessible ways to tap into the vintage photo trend right now.
+    </p>
+    <p>
+      It's small, lightweight at only 4 oz, and comes with a flip-up screen that makes selfies and candid shots effortless. No complicated menus. No learning curve. Just point, shoot, and let the camera do its thing.
+    </p>
+
+    <div class="inline-img-wrap">
+      <img src="image2.jpg" alt="Kodak PIXPRO C1 in hand" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="img-placeholder" style="display:none !important;">
+        <span>🎞️</span>
+        image2.jpg
+      </div>
+    </div>
+  </div>
+
+  <!-- RETRO FILTER -->
+  <div class="section">
+    <h2 class="section-title">The Retro Filter Is the Real Star</h2>
+    <p>
+      The built-in retro filter is where the magic happens. One tap and your photos transform — desaturated tones, a touch of grain, that soft imperfect glow that makes everything look like it was shot in 2003. It's not a phone filter. It's baked right into the camera, giving you that authentic feel straight out of the shot.
+    </p>
+    <p>
+      The simplicity is honestly part of the charm. No complicated settings to overthink. You focus on the moment, the people in front of you — and the camera handles the rest.
+    </p>
+  </div>
+
+  <div class="pull-quote">
+    <p>It's not about clinical perfection. It's about character — photos that actually feel like memories, not screenshots.</p>
+  </div>
+
+  <!-- WHY NOT PHONE -->
+  <div class="section">
+    <h2 class="section-title">Why Not Just Use Your Phone?</h2>
+    <p>
+      Your phone takes great photos — almost <em>too</em> great. Everything is sharp, bright, and perfectly processed. That's fine for some things, but it doesn't give you <em>that look</em>. The PIXPRO C1 gives your photos character. Imperfection. Soul. The kind of aesthetic that stands out on your feed and actually feels like a memory.
+    </p>
+
+    <div class="inline-img-wrap">
+      <img src="image3.jpg" alt="Sample photo taken with Kodak PIXPRO C1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="img-placeholder" style="display:none !important;">
+        <span>🖼️</span>
+        image3.jpg
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- SPECS -->
+  <div class="section">
+    <h2 class="section-title">What You Get for $99</h2>
+    <div class="specs-grid">
+      <div class="spec-item">
+        <span class="spec-label">Sensor</span>
+        <span class="spec-value">13MP wide-angle f/2.0 lens</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Filters</span>
+        <span class="spec-value">Retro, Vivid, B&amp;W, Negative &amp; more</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Screen</span>
+        <span class="spec-value">2.8" flip-up LCD — selfies &amp; vlogging</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Video</span>
+        <span class="spec-value">Full HD 1080p recording</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Weight</span>
+        <span class="spec-value">4.05 oz — fits any pocket or bag</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Charging</span>
+        <span class="spec-value">USB-C — no extra cables needed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUR TAKE + CTA -->
+  <div class="cta-block">
+    <p>
+      If you've been curious about the digicam trend and want to try it without a big commitment, the Kodak PIXPRO C1 is the move. It's fun, it's fresh, it's affordable — and it delivers that vintage look your phone simply wasn't built to replicate. This is one of our favorite finds at The Hanis, and we think you're going to love it too.
+    </p>
+    <a href="YOUR_AFFILIATE_LINK_HERE" class="cta-btn">Grab It on Amazon →</a>
+    <p class="affiliate-note">As an Amazon Associate, The Hanis earns from qualifying purchases.</p>
+  </div>
+
+  <div class="article-footer">
+    <span>© The Hanis</span>
+    <span>Gear &amp; Finds</span>
+  </div>
+
+</div>
+
+</body>
+</html>
